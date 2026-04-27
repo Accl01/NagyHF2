@@ -1,0 +1,14 @@
+Két class. Pont és Út. Ponton belül a ponthoz tartozó utak halmaza. 
+Út: 
+- Van értéke
+- Név
+
+Pont:
+- Fokszám
+- Csatlakozó utak halmaza
+- Név
+
+Kezdéskor bekéri a gyaloglási sebességet. Ez alapján kiírja milyen hosszú az út. Az optimális út kiírásánál a hosszát, idejét, és az utak nevét írja ki amiken végig kell menni.
+
+Az utak és a pontok adatbázisa bővíthető. Új pontokat lehet megadni és azt hogy azok melyik meglévő utakhoz kapcsolódnak a rendszerben, vagy milyen utat kell hozzáadni a rendszerhez hogy csatlakozzon.
+
