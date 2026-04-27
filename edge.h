@@ -14,7 +14,14 @@ class Edge{
 public:
 //konstruktor
     Edge(int id, std::string name, double len, Node* node1, Node* node2)
-    : id(id), name(name), len(len), node1(node1), node2(node2) {}
+    : id(id), name(name), len(len), node1(node1), node2(node2){
+        if(node1 == node2){
+            throw std::runtime_error("Azonos pontokból lett létrehozva él.");
+        }
+        if(len <= 0){
+            throw std::runtime_error("Negatív élhossz nem lehet");
+        }
+    }
     
 //getters
     int getId() const{
