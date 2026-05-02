@@ -72,4 +72,16 @@ std::vector<Node*> Graph::findPath(Node* start, Node* end){
     std::map<Node*, double> tavolsag;
     std::map<Node*, Node*> elozo;
     std::vector<Node*> unvisited = nodes;
+
+    const double INF = 9999999999999.0;
+
+    for(Node* n : nodes){
+        tavolsag[n] = INF;
+        elozo[n] = nullptr;
+    }
+    tavolsag[start] = 0;
+
+    while(!unvisited.empty()){
+
+    }
 }

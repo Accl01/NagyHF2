@@ -9,7 +9,6 @@
 #include "edge.h"
 #include "node.h"
 
-
 class Graph {
     std::vector<Node*> nodes;
     std::vector<Edge*> edges;
