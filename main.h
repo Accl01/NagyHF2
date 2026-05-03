@@ -4,7 +4,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
 #include "planner.h"
+#include "file.h"
+#include "graph.h"
+#include "node.h"
+#include "edge.h"
+
 
 
 

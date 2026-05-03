@@ -40,6 +40,7 @@ void Graph::addEdge(Node* n1, Node* n2, std::string name, double len){
     }
 }
 
+
 void Graph::listNodes(std::ostream& os){
     if(nodes.empty()){
         os << "A gráf üres." << std::endl;
