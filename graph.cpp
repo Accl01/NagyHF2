@@ -63,6 +63,17 @@ std::vector<Edge*> Graph::getConnection(Node* node){
     return ki;
 }
 
+
+Node* Graph::findNodebyname(const std::string& name) const{
+    for(Node* n : nodes){
+        if(n != nullptr && n->getName() == name){
+            return n;
+        }
+    }
+    return nullptr;
+}
+
+
 //Dijkstra!
 
 std::vector<Node*> Graph::findPath(Node* start, Node* end){
@@ -83,6 +94,19 @@ std::vector<Node*> Graph::findPath(Node* start, Node* end){
     tavolsag[start] = 0;
 
     while(!unvisited.empty()){
+        int minIndex = 0;
+        for(int i = 1; i < unvisited.size(); ++i){
+            if(tavolsag[unvisited[i]] < tavolsag[unvisited[minIndex]]){
+                minIndex = i;
+            }
+        }
 
+        Node* u = unvisited[minIndex];
+        if(u == end || tavolsag[u] == INF) break;
+
+        unvisited.erase(unvisited.begin() + minIndex);
+        for(Edge* e : getConnection(u)){
+            Node* v = e->getNode2()
+        }
     }
 }

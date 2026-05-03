@@ -21,6 +21,7 @@ public:
     void addNode(Node* newnode);
     void addEdge(Node* n1, Node* n2, std::string name, double len);
     void listNodes();
+    Node* findNodebyname(const std::string& name) const;
 
     std::vector<Edge*> getConnection(Node* node);
 

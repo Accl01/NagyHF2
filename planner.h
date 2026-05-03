@@ -12,6 +12,9 @@ class Planner {
 public:
     Planner() : walkingSpeed(2){}
 
+    void routePlanner(Graph& graph, const std::string& startName, const std::string& endName) const;
+
+
     void setWalkingspeed(int speed) {
         if(speed == 1 || speed == 2 || speed == 3){
             walkingSpeed = speed;
