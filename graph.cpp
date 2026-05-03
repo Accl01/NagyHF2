@@ -10,7 +10,15 @@ void Graph::addNode(Node* newnode){
     nodes.push_back(newnode);
 }
 
+
 void Graph::addEdge(Node* n1, Node* n2, std::string name, double len){
+    if(n1 == nullptr || n2 == nullptr){
+        throw std::runtime_error("Nullptr!");
+    }
+    if(n1 == n2){
+        throw std::runtime_error("Ugyan az a ket el!");
+    }
+    
     for(Edge* e : edges){
         if(e->getName() == name){
             throw std::runtime_error("Egyezik a név");
@@ -54,6 +62,7 @@ void Graph::listNodes(){
 
 }
 
+
 std::vector<Edge*> Graph::getConnection(Node* node) const {
     std::vector<Edge*> ki;
     for(Edge* e : edges){
@@ -63,6 +72,7 @@ std::vector<Edge*> Graph::getConnection(Node* node) const {
     }
     return ki;
 }
+
 
 
 Node* Graph::findNodebyname(const std::string& name) const{
