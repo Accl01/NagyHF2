@@ -28,7 +28,7 @@ public:
 
 
     //destruktor, virtualisan foglalt edges es nodes hoz.
-    ~Graph(){
+    virtual ~Graph(){
         for(Node* n : nodes){delete n;} 
         for(Edge* e : edges){delete e;}
     }

@@ -43,12 +43,16 @@ public:
         return node2;
     }
 
+
 //operators
     friend std::ostream& operator<<(std::ostream& os, const Edge& e){
         return os << e.name << ", (" << e.len << "m)";
     }
 
 
+    virtual ~Edge() {}
+
+    
 };
 
 #endif //EDGE_H

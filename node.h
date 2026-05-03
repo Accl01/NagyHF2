@@ -29,7 +29,7 @@ public:
     }
 
 
-
+    virtual ~Node() {}
 
     friend std::ostream& operator<<(std::ostream& os, const Node& n){
         return os << n.id << " ; " << n.name;
