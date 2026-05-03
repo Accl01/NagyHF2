@@ -3,7 +3,7 @@ CXXFLAGS = -Wall -Wextra -std=c++11 -g
 
 TARGET = utvonaltervezo
 
-SRCS = main.cpp graph.cpp
+SRCS = main.cpp graph.cpp planner.cpp
 OBJS = 	$(SRCS:.cpp=.o)
 
 all: $(TARGET)
@@ -14,7 +14,7 @@ $(TARGET): $(OBJS)
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
-main.o: main.cpp main.h graph.h node.h edge.h planner.h file.h
+main.o: main.cpp main.h graph.h node.h edge.h planner.cpp planner.h file.h
 graph.o: graph.cpp graph.h node.h edge.h
 
 

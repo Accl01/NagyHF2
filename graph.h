@@ -23,9 +23,9 @@ public:
     void listNodes();
     Node* findNodebyname(const std::string& name) const;
 
-    std::vector<Edge*> getConnection(Node* node);
+    std::vector<Edge*> getConnection(Node* node) const;
 
-    std::vector<Node*> findPath(Node* start, Node* end);
+    std::vector<Node*> findPath(Node* start, Node* end) const;
 
 
     //destruktor, virtualisan foglalt edges es nodes hoz.

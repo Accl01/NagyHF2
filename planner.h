@@ -12,7 +12,7 @@ class Planner {
 public:
     Planner() : walkingSpeed(2){}
 
-    void routePlanner(Graph& graph, const std::string& startName, const std::string& endName) const;
+    void routePlanner(const std::string& startName, const std::string& endName) const;
 
 
     void setWalkingspeed(int speed) {

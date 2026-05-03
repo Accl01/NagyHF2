@@ -1,6 +1,6 @@
 #include "planner.h"
 
-void Planner::routePlanner(Graph& graph, const std::string& startName, const std::string& endName) const{
+void Planner::routePlanner(const std::string& startName, const std::string& endName) const{
     Node* start = graph.findNodebyname(startName);
     Node* end = graph.findNodebyname(endName);
 
@@ -31,9 +31,8 @@ void Planner::printRoute(std::vector<Node*> path) const{
         Node* after = path[i+1];
 
         std::vector<Edge*> connenctions = graph.getConnection(current);
-        bool van = false;
         for(Edge* e : connenctions){
-            if(e->getNode2() == after){ ///!!!!!!!!!
+            if(e->getNode1() == after || e->getNode2() == after){
                 length += e->getLen();
             }
         }
@@ -55,7 +54,7 @@ double Planner::timeofwalk(double len) const{
     switch(this->walkingSpeed){
         case 1:
             speed = 60; //Lassu
-            brake;
+            break;
 
         case 2:
             speed = 80; //Kozepes

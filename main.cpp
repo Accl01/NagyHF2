@@ -31,24 +31,30 @@ int main(){
 
 
     Planner planner;
+    std::string node1 = n1->getName();
+    std::string node2 = n2->getName();
+
+    //planner.loadData("test.txt");
+    //planner.routePlanner(node1, node2);
+    //planner.saveData("test.txt");
+    //Planner majd így fog működni.    
+    
+    std::cout << "Planner tesztjei" << std::endl;
 
     //Sima Pontok és Élek kiírása az operátorukkal.
     std::cout << "\nNode-ok:\n" << *n1 << "\n" << *n2 << "\n" << *n3 << std::endl;
     std::cout << "\nEdge-ek:\n" << *e1 << "\n" << *e2 << std::endl;
 
 
-    
+
     //Gráf pontjainak kilistázásának a testje
     graph.listNodes();
 
 
 
-
     
-    delete n1;
-    delete n2;
-    delete n3;
     delete e1;
     delete e2;
 
+    return 0;
 }
