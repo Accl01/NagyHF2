@@ -15,7 +15,7 @@ void Graph::addEdge(Node* n1, Node* n2, std::string name, double len){
         if(e->getName() == name){
             throw std::runtime_error("Egyezik a név");
         }
-
+        //Az egész gráf össszeköttetve legyen
         if(!edges.empty()){
             bool connect = false;
             for(Edge* e : edges){
@@ -41,13 +41,13 @@ void Graph::addEdge(Node* n1, Node* n2, std::string name, double len){
 }
 
 
-void Graph::listNodes(std::ostream& os){
+void Graph::listNodes(){
     if(nodes.empty()){
-        os << "A gráf üres." << std::endl;
+        std::cout << "A gráf üres." << std::endl;
     }else{
-        os << "\n--- Elérhető csomópontok ---" << std::endl;
+        std::cout << "\n--- Elérhető csomópontok ---" << std::endl;
         for(Node* n : nodes){
-            os << *n << std::endl;
+            std::cout << *n << std::endl;
         }
     }
 

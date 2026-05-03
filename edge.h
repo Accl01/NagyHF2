@@ -45,7 +45,7 @@ public:
 
 //operators
     friend std::ostream& operator<<(std::ostream& os, const Edge& e){
-        return os << e.name << "(" << e.len << "m)";
+        return os << e.name << ", (" << e.len << "m)";
     }
 
 

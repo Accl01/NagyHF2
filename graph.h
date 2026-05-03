@@ -20,7 +20,7 @@ public:
 
     void addNode(Node* newnode);
     void addEdge(Node* n1, Node* n2, std::string name, double len);
-    void listNodes(std::ostream& os);
+    void listNodes();
 
     std::vector<Edge*> getConnection(Node* node);
 
