@@ -1,6 +1,6 @@
-[PONTOK]
+[Pontok]
 # ID;Név
-1;Gellerter_M
+1;Gellertter_M
 2;Budafoki_ut_vege
 3;CH_eszaki_bejarat
 4;Budafoki_kapu
@@ -18,10 +18,10 @@
 16;L_sarka
 17;K_park_harmaselagazas
 18;BertalanLajos_kelet
-[VONALAK]
+[Vonalak]
 # ID;Név;Honnan_ID;Hova_ID;Hossz(m)
-101;Gellerter-K_fobejarat;1;9;266
-102;Gellerter-Budafoki_kapu;1;4;130
+101;Gellertter-K_fobejarat;1;9;266
+102;Gellertter-Budafoki_kapu;1;4;130
 103;Budafoki_kapu-CH-K;4;5;50
 104;CH_hatsobejarat;5;6;10
 105;K_eszaki_kapu;5;7;30
@@ -34,3 +34,9 @@
 112;Sohajokhidja-Harmaselagazas;10;17;100
 113;Harmaselagazas-Geologia_tanszek;17;14;64
 114;Geologia_tanszek-BertalanLajos_kelet;14;18;86
+115;BertalanLajos_kelet-Tesikozpont;18;15;90
+116;K_fobejarat-Tesikozpont;9;15;280
+117;Harmaselagazas-L_sarka;17;16;47
+118;L_sarka-F_hatso_bejarat;16;12;56
+119;F_hatso_bejarat-F_29;12;13;67
+120;Budafoki_kapu-F_29;4;13;300

@@ -1,5 +1,9 @@
 #include "main.h"
 
+#ifdef _WIN32
+    #include <windows.h>
+#endif
+
 void printMenu(){
     std::cout << ASCIILOGO << std::endl;
     std::cout << "\n\n" << ASCIICIM << std::endl;
@@ -37,6 +41,12 @@ void clearScreen(){
 }
 
 int main(){
+    
+    #ifdef _WIN32 //terminalba beirod hogy chcp 65001
+        SetConsoleCP(65001);
+        SetConsoleOutputCP(65001);
+    #endif
+
     Planner planner;
     std::string filename = "uthalozat.txt";
 
@@ -60,7 +70,7 @@ int main(){
             std::cout << "Hiba. Kérlek adj meg számot." << std::endl;
             std::cin.clear();
             std::cin.ignore(1000, '\n');
-            
+
             continue;
         }
         std::cin.ignore(1000, '\n');
@@ -70,9 +80,9 @@ int main(){
         case 1: {
             clearScreen();
             std::string start, end;
-            std::cout << "Indulópont: ";
+            std::cout << "\nIndulópont: ";
             std::getline(std::cin, start);
-            std::cout << "Cél: ";
+            std::cout << "\nCél: ";
             std::getline(std::cin, end);
             planner.routePlanner(start, end);
             std::cout <<"Nyomj entert a folytatáshoz: ";
@@ -80,15 +90,15 @@ int main(){
             break;
         }
         case 2: {
+            break;
+        }
+        case 3: {
             clearScreen();
             std::cout << ASCIILOGO << std::endl;
             std::cout << "\n\n" << ASCIICIM << std::endl;
             planner.listNodes();
             std::cout <<"Nyomj entert a folytatáshoz: ";
             std::cin.get();
-            break;
-        }
-        case 3: {
             break;
         }
         case 4: {
