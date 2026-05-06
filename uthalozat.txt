@@ -1,0 +1,36 @@
+[PONTOK]
+# ID;Név
+1;Gellerter_M
+2;Budafoki_ut_vege
+3;CH_eszaki_bejarat
+4;Budafoki_kapu
+5;CH-K
+6;CH_deli_bejarat
+7;K_eszaki_bejarat
+8;K_aluljaro_kozepe
+9;K_fobejarat
+10;K_sohajokhidja
+11;K_deli_bejarat
+12;F_hatso_bejarat
+13;F_29
+14;Geologia_tanszek
+15;Tesikozpont
+16;L_sarka
+17;K_park_harmaselagazas
+18;BertalanLajos_kelet
+[VONALAK]
+# ID;Név;Honnan_ID;Hova_ID;Hossz(m)
+101;Gellerter-K_fobejarat;1;9;266
+102;Gellerter-Budafoki_kapu;1;4;130
+103;Budafoki_kapu-CH-K;4;5;50
+104;CH_hatsobejarat;5;6;10
+105;K_eszaki_kapu;5;7;30
+106;Budafoki_kapu-Sohajokhidja;4;10;182
+107;K-n_belul-Sohajokhidja-eszaki_kapu;7;10;180
+108;K-n_belul-Fobejarat-Sohajokhidja;9;10;180
+109;K-n_belul-Sohajokhidja-Deli_kapu;10;11;180
+110;K-n_belul-Eszak-Del;7;11;250
+111;K_deli_kapu-Geologia_tanszek;11;14;47
+112;Sohajokhidja-Harmaselagazas;10;17;100
+113;Harmaselagazas-Geologia_tanszek;17;14;64
+114;Geologia_tanszek-BertalanLajos_kelet;14;18;86

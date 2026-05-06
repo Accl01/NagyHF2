@@ -1,6 +1,8 @@
 #ifndef PLANNER_H
 #define PLANNER_H
 
+#include <sstream>
+
 #include "graph.h"
 #include "file.h"
 
@@ -22,6 +24,8 @@ public:
     }
 
     double timeofwalk(double len) const;
+
+    void listNodes() const;
 
     void loadData(std::string filename);
     void saveData(std::string filename);

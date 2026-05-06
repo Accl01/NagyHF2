@@ -1,60 +1,109 @@
 #include "main.h"
 
-//test main for skeleton
+void printMenu(){
+    std::cout << ASCIILOGO << std::endl;
+    std::cout << "\n\n" << ASCIICIM << std::endl;
+    std::cout << "\n\n1. Utvonaltervezés" << std::endl;
+    std::cout << "2. Új pont felvétele" << std::endl;
+    std::cout << "3. Csomópontok listázása" << std::endl;
+    std::cout << "4. Kilépés" << std::endl;
+    std::cout << "Választás: ";
+}
+
+void initwalkspeed(Planner& planner){
+    int choice = 0;
+    while(choice < 1 || choice > 3){
+        clearScreen();
+        std::cout << ASCIILOGO << std::endl;
+        std::cout << "\n\n" << ASCIICIM << std::endl;
+        std::cout << "\n\nVálassz a három sétatempóból:\n" << "1. Lassú\n" << "2. Közepes\n" << "3. Gyors" << std::endl;
+        std::cout << " Választás: ";
+
+        if(!(std::cin >> choice)){
+            std::cout << "Hiba. Kérlek a számok közül válassz!" << std::endl;
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            choice = 0;
+        }else if(choice < 1 || choice > 3){
+            std::cout << "Hiba. Csak 1, 2, vagy 3 adható meg!" << std::endl;
+        }
+    }
+    planner.setWalkingspeed(choice);
+    std::cin.ignore(1000, '\n');
+}
+
+void clearScreen(){
+    std::cout << "\033[2J\033[H";
+}
+
 int main(){
-    Graph graph;
-
-    
-    //Nodeok létrehozása
-    Node* n1 = new Node(1, "Q_nyugatibejarat");
-    Node* n2 = new Node(2, "I_nyugatibejarat");
-    Node* n3 = new Node(3, "E_fobejarat");
-    std::cout << "Node-ok letrehozva" << std::endl;
-
-    //Nodeok hozzáadása a gráfomhoz
-    graph.addNode(n1);
-    graph.addNode(n2);
-    graph.addNode(n3);
-    std::cout <<"Node-ok hozzaadva a grafomhoz" << std::endl;
-
-    //Élek létrehozása a konstruktorral.
-    Edge* e1 = new Edge(1, "Q-I_utca", 200, n1, n2);
-    Edge* e2 = new Edge(2, "Q-E_aluljaron", 420, n1, n3);
-    std::cout << "Elek kulon letrehozva" << std::endl;
-
-    //Élek hozzáadása a gráfopmhopz.
-    graph.addEdge(n1, n2, "Q-I_utca", 200);
-    graph.addEdge(n1, n3, "Q-E_aluljaro", 420);
-    std::cout << "Elek a grafhoz adasa" << std::endl;
-
-    graph.findPath(n1, n2);
-
-
     Planner planner;
-    std::string node1 = n1->getName();
-    std::string node2 = n2->getName();
+    std::string filename = "uthalozat.txt";
 
-    //planner.loadData("test.txt");
-    //planner.routePlanner(node1, node2);
-    //planner.saveData("test.txt");
-    //Planner majd így fog működni.    
-    
-    std::cout << "Planner tesztjei" << std::endl;
+    try{
+        planner.loadData(filename);
+        std::cout << "Gráf sikeresen betöltve.\n";
+    }catch(const std::exception& e){
+        std::cout << "Betöltési hiba:" << e.what() << std::endl;
+        std::cout << "Alap helyzet felállítása." << std::endl;
+    }
 
-    //Sima Pontok és Élek kiírása az operátorukkal.
-    std::cout << "\nNode-ok:\n" << *n1 << "\n" << *n2 << "\n" << *n3 << std::endl;
-    std::cout << "\nEdge-ek:\n" << *e1 << "\n" << *e2 << std::endl;
+    initwalkspeed(planner);
+    clearScreen();
 
+    int choice = 0;
+    while(choice != 4){
+        clearScreen();
+        printMenu();
 
+        if(!(std::cin >> choice)){
+            std::cout << "Hiba. Kérlek adj meg számot." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            
+            continue;
+        }
+        std::cin.ignore(1000, '\n');
 
-    //Gráf pontjainak kilistázásának a testje
-    graph.listNodes();
+        switch (choice)
+        {
+        case 1: {
+            clearScreen();
+            std::string start, end;
+            std::cout << "Indulópont: ";
+            std::getline(std::cin, start);
+            std::cout << "Cél: ";
+            std::getline(std::cin, end);
+            planner.routePlanner(start, end);
+            std::cout <<"Nyomj entert a folytatáshoz: ";
+            std::cin.get();
+            break;
+        }
+        case 2: {
+            clearScreen();
+            std::cout << ASCIILOGO << std::endl;
+            std::cout << "\n\n" << ASCIICIM << std::endl;
+            planner.listNodes();
+            std::cout <<"Nyomj entert a folytatáshoz: ";
+            std::cin.get();
+            break;
+        }
+        case 3: {
+            break;
+        }
+        case 4: {
+            clearScreen();
+            planner.saveData(filename);
+            std::cout << "Sikeres mentés!" << std::endl;
+            break;
+        }
+        default:
+            clearScreen();
+            std::cout << "Érvénytelen menüpont!" << std::endl;
+            break;
+        }
+    }
 
-
-
-    
-    delete e1;
-    delete e2;
 
     return 0;
 }

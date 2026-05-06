@@ -70,3 +70,69 @@ double Planner::timeofwalk(double len) const{
     }
     return len / speed;
 }
+
+void Planner::listNodes() const{
+    graph.listNodes();
+}
+
+
+void Planner::loadData(std::string filename){
+    std::vector<std::string> input = file.readTXT(filename);
+    std::string mode = "";
+
+    for(const std::string& line: input){
+        if(line == "[Pontok]"){mode = "P"; continue;}
+        if(line == "[Vonalak]"){mode = "V"; continue;}
+        if(line[0] == '#'){continue;}
+
+        std::stringstream ss(line);
+        std::string i;                      //Input
+        std::vector<std::string> iline;          //Input line
+        while(std::getline(ss, i, ';')){
+            iline.push_back(i);
+        }
+
+        if(mode == "P" && iline.size() >= 2){
+            int id = std::stoi(iline[0]);
+            graph.addNode(new Node(id, iline[1]));
+        }
+        else if(mode == "V" && iline.size() >= 5){
+            int n1_id = std::stoi(iline[2]);
+            int n2_id = std::stoi(iline[3]);
+            double len = std::stod(iline[4]);
+
+            Node* startnode = nullptr;
+            Node* endnode = nullptr;
+
+            for(Node* n : graph.getNodes()){
+                if(n->getId() == n1_id){startnode = n;}
+                if(n->getId() == n2_id){endnode = n;}
+            }
+            if(startnode && endnode){
+                graph.addEdge(startnode, endnode, iline[1], len);
+            }
+        }
+    }
+}
+
+void Planner::saveData(std::string filename){
+    std::vector<std::string> output;
+    output.push_back("[PONTOK]");
+    output.push_back("# ID;Név");
+
+    for(Node* n : graph.getNodes()){
+        std::stringstream ss;
+        ss << n->getId() << ";" << n->getName();
+        output.push_back(ss.str()); 
+    }
+
+    output.push_back("[VONALAK]");
+    output.push_back("# ID;Név;Honnan_ID;Hova_ID;Hossz(m)");
+
+    for(Edge* e : graph.getEdges()){
+        std::stringstream ss;
+        ss << e->getId() << ";" << e->getName() << ";" << e->getNode1()->getId() << ";" << e->getNode2()->getId() << ";" << e->getLen();
+        output.push_back(ss.str());
+    }
+    file.writeTXT(filename, output);
+}

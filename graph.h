@@ -18,9 +18,13 @@ public:
         return nodes;
     }
 
+    const std::vector<Edge*>& getEdges() const{
+        return edges;
+    }
+
     void addNode(Node* newnode);
     void addEdge(Node* n1, Node* n2, std::string name, double len);
-    void listNodes();
+    void listNodes() const;
     Node* findNodebyname(const std::string& name) const;
 
     std::vector<Edge*> getConnection(Node* node) const;

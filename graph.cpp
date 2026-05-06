@@ -15,7 +15,7 @@ void Graph::addEdge(Node* n1, Node* n2, std::string name, double len){
     if(n1 == nullptr || n2 == nullptr){
         throw std::runtime_error("Nullptr!");
     }
-    if(n1 == n2){
+    if(n1->getId() == n2->getId()){
         throw std::runtime_error("Ugyan az a ket el!");
     }
     
@@ -50,7 +50,7 @@ void Graph::addEdge(Node* n1, Node* n2, std::string name, double len){
 
 
 
-void Graph::listNodes(){
+void Graph::listNodes() const{
     if(nodes.empty()){
         std::cout << "A gráf üres." << std::endl;
     }else{
