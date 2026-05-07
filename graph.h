@@ -34,8 +34,8 @@ public:
 
     //destruktor, virtualisan foglalt edges es nodes hoz.
     virtual ~Graph(){
-        for(Node* n : nodes){delete n;} 
-        for(Edge* e : edges){delete e;}
+        for(Node* n : nodes){delete n; nodes.clear();} 
+        for(Edge* e : edges){delete e; edges.clear();}
     }
 
 };

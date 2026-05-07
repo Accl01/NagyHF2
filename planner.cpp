@@ -82,6 +82,30 @@ void Planner::listNodes() const{
 }
 
 
+void Planner::addNewNode(const std::string name){
+    int newId = 1;
+    if(!graph.getNodes().empty()){
+        newId = graph.getNodes().back()->getId() + 1;
+    }
+    graph.addNode(new Node(newId, name));
+}
+
+void Planner::addNewEdge(const std::string name, int n1_id, int n2_id, double len){
+    Node* node1 = nullptr;
+    Node* node2 = nullptr;
+
+    for(Node* n : graph.getNodes()){
+        if(n->getId() == n1_id){node1 = n;}
+        if(n->getId() == n2_id){node2 = n;}
+    }
+    if(node1 && node2){
+        graph.addEdge(node1, node2, name, len);
+    }else{
+        throw std::runtime_error("Nemstimmel valamelyik Id!");
+    }
+}
+
+
 //Fileok kezelése
 
 void Planner::loadData(std::string filename){

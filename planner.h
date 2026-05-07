@@ -26,6 +26,9 @@ public:
     double timeofwalk(double len) const;
 
     void listNodes() const;
+;
+    void addNewNode(const std::string name);
+    void addNewEdge(const std::string name, int n1_id, int n2_id, double len);
 
     void loadData(std::string filename);
     void saveData(std::string filename);

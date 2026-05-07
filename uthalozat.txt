@@ -18,6 +18,8 @@
 16;L_sarka
 17;K_park_harmaselagazas
 18;BertalanLajos_kelet
+19;E_fobejarat
+20;Bertalan_Stoczek_keresztezodes
 [Vonalak]
 # ID;Név;Honnan_ID;Hova_ID;Hossz(m)
 101;Gellertter-K_fobejarat;1;9;266
@@ -42,3 +44,4 @@
 120;L_sarka-F_hatso_bejarat;16;12;56
 121;F_hatso_bejarat-F_29;12;13;67
 122;Budafoki_kapu-F_29;4;13;300
+123;L_sarok-Stoczek;16;20;89
