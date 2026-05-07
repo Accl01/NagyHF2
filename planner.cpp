@@ -22,6 +22,12 @@ void Planner::routePlanner(const std::string& startName, const std::string& endN
 void Planner::printRoute(std::vector<Node*> path) const{
     if(path.empty()){
         std::cout << "Nincs kiírható útvonal" << std::endl;
+        return;
+    }
+
+    if(path.size() == 1){
+        std::cout << "Már a célban vagy: " << path[0]->getName() << std::endl;
+        return;
     }
 
     double length = 0;
