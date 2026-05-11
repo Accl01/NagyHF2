@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+#include "gtest_lite.h"
 #include "memtrace.h"
 #include "planner.h"
 #include "file.h"
@@ -18,7 +19,7 @@
 void clearScreen();
 void initwalkspeed(Planner& planner);
 void printMenu();
-
+void run_tests();
 
 
 

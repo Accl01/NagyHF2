@@ -1,10 +1,13 @@
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++11 -g
+CXXFLAGS = -Wall -Wextra -std=c++11 -g -DTEST_MODE
 
 TARGET = utvonaltervezo
 
-SRCS = main.cpp graph.cpp planner.cpp file.cpp memtrace.c
-OBJS = 	$(SRCS:.cpp=.o)
+CPPS = main.cpp graph.cpp planner.cpp file.cpp
+CS = memtrace.c
+
+OBJS = 	$(CPPS:.cpp=.o) $(CS:.c=.o)
+
 
 all: $(TARGET)
 
@@ -14,12 +17,13 @@ $(TARGET): $(OBJS)
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
-main.o: main.cpp main.h graph.h node.h edge.h planner.cpp planner.h file.cpp file.h gtest_lite.h memtrace.c memtrace.h
-graph.o: graph.cpp graph.h node.h edge.h
 
+%.o: %.c
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS) $(TARGET)
+	rm -f $(TARGET).dSYM
 	@echo "Takarítás kész."
 
 run: all

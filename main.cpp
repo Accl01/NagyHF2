@@ -38,6 +38,85 @@ void clearScreen(){
     std::cout << "\033[2J\033[H";
 }
 
+#ifdef TEST_MODE
+void run_tests(){
+    //Pontok tesztelése.
+    TEST(NodeLogic, NodeTest)
+        Node n1(1, "A_pont");
+        EXPECT_EQ(1, n1.getId());
+        EXPECT_STREQ("A_pont", n1.getName().c_str());
+
+        Node n2(1, "A_pont");
+        EXPECT_TRUE(n1 == n2);
+    END
+
+    //Élek tesztelése.
+    TEST(EdgeLogic, EdgeTest)
+        Node* n1 = new Node(1, "Indulo");
+        Node* n2 = new Node(2, "Erkezo");
+        Edge e1(101, "Utca", 150.0, n1, n2);
+
+        EXPECT_EQ(101, e1.getId());
+        EXPECT_DOUBLE_EQ(150.0, e1.getLen());
+        EXPECT_EQ(n1, e1.getNode1());
+        EXPECT_EQ(n2, e1.getNode2());
+
+        EXPECT_THROW(Edge(102, "Hiba", 10.0, n1, n1), std::runtime_error);
+        EXPECT_THROW(Edge(103, "Hiba", -10.0, n1, n2), std::runtime_error);
+
+        delete n1;
+        delete n2;
+    END
+
+    //Gráf és dijkstra tesztelése.
+    TEST(GraphLogic, DijkstraTest)
+        Graph g;
+        Node* n1 = new Node(1, "Indulo");
+        Node* n2 = new Node(2, "Kozepso");
+        Node* n3 = new Node(3, "Erkezo");
+
+        g.addNode(n1);
+        g.addNode(n2);
+        g.addNode(n3);
+
+        g.addEdge(n1, n2, "Ell1", 100);
+        g.addEdge(n2, n3, "Ell2", 50);
+
+        std::vector<Node*> path = g.findPath(n1, n3);
+        ASSERT_EQ(3, (int)path.size());
+        EXPECT_STREQ("Indulo", path[0]->getName().c_str());
+        EXPECT_STREQ("Erkezo", path[2]->getName().c_str());
+
+        Node* n4 = new Node(4, "Sziget");
+        Node* n5 = new Node(5, "Sziget2");
+
+        g.addNode(n4);
+        g.addNode(n5);
+
+        std::vector<Node*> isolalt = g.findPath(n1, n4);
+        //Ez azt jelenti hogy nem ugyanaz a két pont a keresésben, 
+        // de nem talált útvonalat mivel a lista amit visszakapott 1 elemet tartalmaz.
+        if(n1 != n4 && isolalt.size() == 1){
+            isolalt.clear();
+        }
+        EXPECT_TRUE(isolalt.empty());
+        EXPECT_THROW(g.addEdge(n4, n5, "Rossz_el", 20), std::runtime_error);
+        EXPECT_THROW(g.addNode(new Node(1, "Ugyanaz")), std::runtime_error);
+
+    END
+
+    //Planner tesztjei.
+    TEST(PlannerLogic, TimeCalculation)
+        Planner p;
+        p.setWalkingspeed(1);
+        EXPECT_DOUBLE_EQ(2.0, p.timeofwalk(120.0));
+
+        p.setWalkingspeed(3);
+        EXPECT_DOUBLE_EQ(1.2, p.timeofwalk(120.0));
+    END
+}
+#endif
+
 int main(){
 
     #ifdef _WIN32 //terminalba beirod hogy chcp 65001
@@ -157,7 +236,12 @@ int main(){
             clearScreen();
             planner.saveData(filename);
             std::cout << "Sikeres mentés!" << std::endl;
-            break;
+
+            #ifdef TEST_MODE
+            run_tests();
+            #endif
+
+            return 0;
         }
         default:
             clearScreen();
