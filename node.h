@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 
+#include "memtrace.h"
+
 class Node{
     int id;
     std::string name;

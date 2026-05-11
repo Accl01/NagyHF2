@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+
+#include "memtrace.h"
 #include "node.h"
 
 class Edge{

@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+#include "memtrace.h"
 #include "planner.h"
 #include "file.h"
 #include "graph.h"

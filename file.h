@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 
+#include "memtrace.h"
+
 class File {
 public:
     std::vector<std::string> readTXT(std::string path);

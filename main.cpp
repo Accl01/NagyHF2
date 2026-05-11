@@ -77,8 +77,10 @@ int main(){
         {
         case 1: {
             clearScreen();
+            std::cout << ASCIICIM << std::endl;
+            planner.listNodes();
             std::string start, end;
-            std::cout << ASCIICIM << "\nIndulópont: ";
+            std::cout << "\nIndulópont: ";
             std::getline(std::cin, start);
             std::cout << "\nCél: ";
             std::getline(std::cin, end);

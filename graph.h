@@ -6,6 +6,7 @@
 #include <vector>
 #include <map>
 
+#include "memtrace.h"
 #include "edge.h"
 #include "node.h"
 
