@@ -23,6 +23,7 @@
 21;R_fobejarat
 22;R_hatsobejarat
 23;R_uvegfolyoso
+24;BME_padok
 [Vonalak]
 # ID;Név;Honnan_ID;Hova_ID;Hossz(m)
 101;Gellertter-K_fobejarat;1;9;266
