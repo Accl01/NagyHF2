@@ -1,5 +1,6 @@
 #include "planner.h"
 
+//Plans route between to nodes given by their name
 void Planner::routePlanner(const std::string& startName, const std::string& endName) const{
     Node* start = graph.findNodebyname(startName);
     Node* end = graph.findNodebyname(endName);
@@ -11,27 +12,25 @@ void Planner::routePlanner(const std::string& startName, const std::string& endN
         std::cout << "Az egyik pont nem található!!" << std::endl;
     }
 
-    //Miutan megvan a legjobb utvonal itt kiírja és kiszamolja mennyi idő a timeofWalk al.
-
+    //After the dijkstra calculates the shortest path the function prints it out with printRoute
     printRoute(route);
-    
-
 }
 
-
+//Prints the route form the routePlanner
 void Planner::printRoute(std::vector<Node*> path) const{
+    //If there is nod route between the two nodes
     if(path.empty()){
         std::cout << "Nincs kiírható útvonal" << std::endl;
         return;
     }
-
+    //If there is only one node in the vector the start and end node are the same
     if(path.size() == 1){
         std::cout << "Már a célban vagy: " << path[0]->getName() << std::endl;
         return;
     }
 
     double length = 0;
-
+    //Calculates the length of the path
     for(size_t i = 0; i < path.size() - 1; i++){
         Node* current = path[i];
         Node* after = path[i+1];
@@ -43,6 +42,7 @@ void Planner::printRoute(std::vector<Node*> path) const{
             }
         }
     }
+    //Claculates the time to walk the length
     double time = timeofwalk(length);
 
     std::cout << "\nA leggyorsabb útvonal" << std::endl;
@@ -54,7 +54,7 @@ void Planner::printRoute(std::vector<Node*> path) const{
     }
 }
 
-
+//Calculates the time to walk a distance
 double Planner::timeofwalk(double len) const{
     double speed;
     switch(this->walkingSpeed){
@@ -81,7 +81,7 @@ void Planner::listNodes() const{
     graph.listNodes();
 }
 
-
+//Adds node to the graph, calculates new Id for them.
 void Planner::addNewNode(const std::string name){
     int newId = 1;
     if(!graph.getNodes().empty()){
@@ -90,6 +90,7 @@ void Planner::addNewNode(const std::string name){
     graph.addNode(new Node(newId, name));
 }
 
+//Adds new edge to the graph
 void Planner::addNewEdge(const std::string name, int n1_id, int n2_id, double len){
     Node* node1 = nullptr;
     Node* node2 = nullptr;
@@ -106,20 +107,19 @@ void Planner::addNewEdge(const std::string name, int n1_id, int n2_id, double le
 }
 
 
-//Fileok kezelése
-
+//Reads the custom txt format and loads the planners graph with its nodes and edges
 void Planner::loadData(std::string filename){
     std::vector<std::string> input = file.readTXT(filename);
     if(input.empty()) return;
 
-    std::string mode = "";
+    std::string mode = "";  //Tracking if we are reading nodes or edges
 
     for(std::string line: input){
-
+        //Skip empty lines
         if(line.empty() || line[0] == '#'){
             continue;
         }
-
+        //"Switch" mode base one 'mode'
         if(line.find("[Pontok]") != std::string::npos){
             mode = "P";
             std::cout << "Pontok beolvasása folyamatban." << std::endl;
@@ -132,6 +132,7 @@ void Planner::loadData(std::string filename){
             continue;
         }
 
+        //Splits line by ';'
         std::stringstream ss(line);
         std::string i;                             //Input
         std::vector<std::string> iline;            //Input line
@@ -141,10 +142,12 @@ void Planner::loadData(std::string filename){
         }
 
         try{
+            //Processes Nodes
             if(mode == "P" && iline.size() >= 2){
                 int id = std::stoi(iline[0]);
                 graph.addNode(new Node(id, iline[1]));
             }
+            //Processes Edges
             else if(mode == "V" && iline.size() >= 5){
                 int n1_id = std::stoi(iline[2]);
                 int n2_id = std::stoi(iline[3]);
@@ -168,8 +171,10 @@ void Planner::loadData(std::string filename){
     }
 }
 
+//Saves graph to the txt
 void Planner::saveData(std::string filename){
     std::vector<std::string> output;
+    //Saveing the nodes
     output.push_back("[Pontok]");
     output.push_back("# ID;Név");
 
@@ -179,6 +184,7 @@ void Planner::saveData(std::string filename){
         output.push_back(ss.str()); 
     }
 
+    //Saving the edges
     output.push_back("[Vonalak]");
     output.push_back("# ID;Név;Honnan_ID;Hova_ID;Hossz(m)");
 

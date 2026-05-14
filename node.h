@@ -6,14 +6,15 @@
 
 #include "memtrace.h"
 
+//Node class
 class Node{
     int id;
     std::string name;
 public:
-//konstruktor
+//Node konstruktor
     Node(int id, std::string name): id(id), name(name){}
 
-//getters
+//Node getters
     int getId() const{
         return id;
     }
@@ -21,15 +22,13 @@ public:
         return name;
     }
 
-//operatoprs
-
+//Node operatoprs
     bool operator==(const Node& other) const{
         if(this->id == other.id || this->name == other.name){
             return true;
         }
         return false;
     }
-
 
     virtual ~Node() {}
 

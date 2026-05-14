@@ -34,10 +34,13 @@ void initwalkspeed(Planner& planner){
     std::cin.ignore(1000, '\n');
 }
 
+//clears the terminal
 void clearScreen(){
     std::cout << "\033[2J\033[H";
 }
 
+
+//TEST CASES
 #ifdef TEST_MODE
 void run_tests(){
     //Pontok tesztelése.
@@ -117,6 +120,9 @@ void run_tests(){
 }
 #endif
 
+
+
+//MAIN
 int main(){
 
     #ifdef _WIN32 //terminalba beirod hogy chcp 65001

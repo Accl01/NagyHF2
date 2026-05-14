@@ -7,6 +7,7 @@
 #include "memtrace.h"
 #include "node.h"
 
+//Edge class
 class Edge{
     int id;
     std::string name;
@@ -14,7 +15,7 @@ class Edge{
     Node* node1;
     Node* node2;
 public:
-//konstruktor
+//Edge konstruktor
     Edge(int id, std::string name, double len, Node* node1, Node* node2)
     : id(id), name(name), len(len), node1(node1), node2(node2){
         if(node1 == node2){
@@ -25,7 +26,7 @@ public:
         }
     }
     
-//getters
+//Edge getters
     int getId() const{
         return id;
     }
@@ -46,7 +47,7 @@ public:
     }
 
 
-//operators
+//Edge operators
     friend std::ostream& operator<<(std::ostream& os, const Edge& e){
         return os << e.name << ", (" << e.len << "m)";
     }

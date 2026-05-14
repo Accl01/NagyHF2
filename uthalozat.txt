@@ -20,6 +20,9 @@
 18;BertalanLajos_kelet
 19;E_fobejarat
 20;Bertalan_Stoczek_keresztezodes
+21;R_fobejarat
+22;R_hatsobejarat
+23;R_uvegfolyoso
 [Vonalak]
 # ID;Név;Honnan_ID;Hova_ID;Hossz(m)
 101;Gellertter-K_fobejarat;1;9;266
@@ -45,3 +48,7 @@
 121;F_hatso_bejarat-F_29;12;13;67
 122;Budafoki_kapu-F_29;4;13;300
 123;L_sarok-Stoczek;16;20;89
+124;Tesikozpont-R_fobejarat;15;21;236
+125;R_keresztbe;21;22;28
+126;R_hatulrol-emelet;22;23;25
+127;R_elorol-emelet;21;23;47
