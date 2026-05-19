@@ -151,7 +151,7 @@ std::vector<Node*> Graph::findPath(Node* start, Node* end) const{
     }
     
     //5. Reveres path to get Start to End order
-    for(size_t i = 0; i < (path.size() / 2); ++i){  // path.size / 2 set is enough to swapp all
+    for(size_t i = 0; i < (path.size() / 2); ++i){  // path.size / 2 set is enough to swap all
         Node* temp = path[i];
         path[i] = path[path.size() - 1 - i];        //Swapping with the mirrored index(path.size -1 -i)
         path[path.size() - 1 - i] = temp;   
